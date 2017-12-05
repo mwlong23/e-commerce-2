@@ -3,23 +3,23 @@ class OrderItemsController < ApplicationController
 
   # GET /order_items
   # GET /order_items.json
-  def index
-    @order_items = OrderItem.all
-  end
+  # def index
+  #   @order_items = OrderItem.all
+  # end
 
   # GET /order_items/1
   # GET /order_items/1.json
-  def show
-  end
+  # def show
+  # end
 
   # GET /order_items/new
-  def new
-    @order_item = OrderItem.new
-  end
+  # def new
+  #   @order_item = OrderItem.new
+  # end
 
   # GET /order_items/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /order_items
   # POST /order_items.json
@@ -33,26 +33,26 @@ class OrderItemsController < ApplicationController
 
   # PATCH/PUT /order_items/1
   # PATCH/PUT /order_items/1.json
-  def update
-    respond_to do |format|
-      if @order_item.update(order_item_params)
-        format.html { redirect_to @order_item, notice: 'Order item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @order_item }
-      else
-        format.html { render :edit }
-        format.json { render json: @order_item.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @order_item.update(order_item_params)
+  #       format.html { redirect_to @order_item, notice: 'Order item was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @order_item }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @order_item.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /order_items/1
   # DELETE /order_items/1.json
   def destroy
-    @order_item.destroy
-    respond_to do |format|
-      format.html { redirect_to order_items_url, notice: 'Order item was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @order = current_order
+    @item = @order.order_items.find(params[:id])
+    @item.destroy
+    @order.save
+    redirect_to cart_path
   end
 
   private
