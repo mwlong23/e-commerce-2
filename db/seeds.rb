@@ -12,11 +12,15 @@ OrderItem.destroy_all
   product = Product.create!(
     name:Faker::Commerce.product_name,
     price:Faker::Commerce.price)
+  # order = Order.create!(
+  #   status:
+  #   total_price:
+  #   account_id:
+  # )
     3.times do |index|
       order_items = OrderItem.create!(
       quantity:Faker::Number.between(1, 10),
       product_id:product.id,
-      order_id:Faker::Number.between(1, 10)
-      )
+      order_id:Faker::Number.between(1, 10))
     end
 end
